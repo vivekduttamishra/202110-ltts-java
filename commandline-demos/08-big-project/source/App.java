@@ -12,5 +12,12 @@ public class App {
 
         list.add(chair);
         list.add(bed);
+
+        Table table=new Table();
+
+        table.add(1,2,chair); //data table?
+
+        //System.out.println("price of table is "+table.getPrice()); //furniture table?
+
     }    
 }
