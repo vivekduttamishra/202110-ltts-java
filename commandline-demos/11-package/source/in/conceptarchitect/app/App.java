@@ -1,11 +1,12 @@
+package in.conceptarchitect.app;
 
-import data.Table;
-import data.List;
-import furnitures.Chair;
-import data.Dictionary;
-import furnitures.Bed;
-import data.BinarySearch;
-import data.QuickSort;
+import in.conceptarchitect.data.Table;
+import in.conceptarchitect.data.List;
+import in.conceptarchitect.furnitures.Chair;
+import in.conceptarchitect.data.Dictionary;
+import in.conceptarchitect.furnitures.Bed;
+import com.javapeople.data.BinarySearch;
+import com.javapeople.data.QuickSort;
 
 //import furnitures.Table; //will cause ambiguity
 
@@ -21,7 +22,7 @@ public class App {
         BinarySearch search=new BinarySearch();
         QuickSort sort=new QuickSort();
 
-        furnitures.Table table2=new furnitures.Table();
+        in.conceptarchitect.furnitures.Table table2=new in.conceptarchitect.furnitures.Table();
 
 
         System.out.println(chair);
@@ -35,7 +36,8 @@ public class App {
 
         System.out.println(sort);
       
-        list.add("value");
+        com.javapeople.data.List list2=new com.javapeople.data.List();
 
+        System.out.println(list2);
     }    
 }
