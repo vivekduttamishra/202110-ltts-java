@@ -11,20 +11,19 @@ public class App {
 		
 		String password="p@ss";
 		
-		BankAccount a1=new BankAccount(222, "Vivek",password, 50000, 12);			
-		//testAccount(a1, password);				
+		//Inital Interest Rate
+		System.out.println("Initial Rate:"+BankAccount.getInterestRate());
 		
-		
-		BankAccount a2=new BankAccount(222,"Sanjay",password,100000,14);
-		//testAccount(a2,password);
-		
+		BankAccount a1=new BankAccount(222, "Vivek",password, 50000);			
+		BankAccount a2=new BankAccount(222,"Sanjay",password,100000);
 		
 		System.out.println("Before change");
 		System.out.println("a1.interestRate: " + a1.getInterestRate());		
 		System.out.println("a2.interestRate: "+a2.getInterestRate());
 		
 		
-		a1.setInterestRate(15);
+		BankAccount.setInterestRate(12);	//a1.setInterestRate(15);
+		
 		System.out.println("\nAfter change");
 		System.out.println("a1.interestRate: " + a1.getInterestRate());		
 		System.out.println("a2.interestRate: "+a2.getInterestRate());

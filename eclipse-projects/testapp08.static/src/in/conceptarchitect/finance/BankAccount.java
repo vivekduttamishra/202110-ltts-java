@@ -8,7 +8,7 @@ public class BankAccount {
 	String name;
 	String password;
 	double balance;
-	double interestRate;
+	static double interestRate = 10;
 	
 	
 	public int getAccountNumber() {
@@ -34,12 +34,13 @@ public class BankAccount {
 	}
 
 	
-	public double getInterestRate() {
+	public static double getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(double interestRate) {
-		this.interestRate = interestRate;
+	public static void setInterestRate(double interestRate) {
+		
+		BankAccount.interestRate = interestRate;
 	}
 	
 
@@ -78,12 +79,12 @@ public class BankAccount {
 		return salted;
 	}
 
-	public BankAccount(int accountNumber, String name, String password, double amount,double interestRate) {
+	public BankAccount(int accountNumber, String name, String password, double amount) {
 		
 		balance=amount; //this is optional here as there is a single balance in the context	
 		this.name=name;
 		setPassword(password);
-		this.interestRate=interestRate;
+		
 		this.accountNumber=accountNumber;
 		
 	}
