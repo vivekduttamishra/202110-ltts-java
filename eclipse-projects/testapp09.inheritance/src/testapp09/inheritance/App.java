@@ -6,7 +6,15 @@ public class App {
 		// TODO Auto-generated method stub
 		
 		
-		Manager manager=new Manager(2,"Sanjay",50000);
+		Manager manager=new Manager(2,"Sanjay",50000,"L&D");
+		
+		manager.work();
+		
+		Employee employee=manager;//allowed
+		
+		employee.work(); //allowed
+		
+		
 		
 		//setEmployeeDetails(manager,"Sanjay",2,10000);
 		useEmployee(manager);

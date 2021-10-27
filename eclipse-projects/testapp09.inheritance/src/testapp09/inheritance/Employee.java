@@ -3,7 +3,7 @@ package testapp09.inheritance;
 public class Employee {
 
 	private int employeeId;
-	private String name;
+	protected String name;
 	private double salary;	
 	
 //	public Employee() {
