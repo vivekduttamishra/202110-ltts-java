@@ -1,6 +1,15 @@
 package testapp09.inheritance;
 
 public class Employee {
+	
+	
+	public void work() {
+		System.out.printf("%s works as employee#%d for salary of Rs %f\n",name,employeeId,salary);
+	}
+	
+	
+	
+	
 
 	private int employeeId;
 	protected String name;
@@ -40,7 +49,5 @@ public class Employee {
 		return String.format("Employee [Id=%d, Name=%s,Salary=%f]", employeeId, name, salary);
 	}
 	
-	public void work() {
-		System.out.printf("%s works as employee#%d for salary of Rs %f\n",name,employeeId,salary);
-	}
+	
 }

@@ -12,12 +12,15 @@ public class App {
 		
 		Employee employee=manager;//allowed
 		
+		//employee.manage();
+		
 		employee.work(); //allowed
 		
 		
 		
+		
 		//setEmployeeDetails(manager,"Sanjay",2,10000);
-		useEmployee(manager);
+		//useEmployee(manager);
 		
 		
 		
