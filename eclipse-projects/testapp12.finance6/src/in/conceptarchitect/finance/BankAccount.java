@@ -8,7 +8,16 @@ public class BankAccount {
 	String name;
 	String password;
 	double balance;
-	//static double interestRate = 10;
+	static double interestRate = 10;
+	
+	public static double getInterestRate() {
+		return interestRate;
+	}
+
+	public static void setInterestRate(double interestRate) {
+		
+		BankAccount.interestRate = interestRate;
+	}
 	
 	
 	public BankAccount(int accountNumber, String name, String password, double amount) {
@@ -45,14 +54,7 @@ public class BankAccount {
 	}
 
 	
-	public static double getInterestRate() {
-		return interestRate;
-	}
-
-	public static void setInterestRate(double interestRate) {
-		
-		BankAccount.interestRate = interestRate;
-	}
+	
 	
 
 	//should there be a getPassword and setPassword
@@ -114,20 +116,21 @@ public class BankAccount {
 
 	public boolean withdraw(double amount, String password) {
 		// TODO Auto-generated method stub
-		if(amount <=0) {
+		if(amount<=0)
 			return false;
-		}
 		if (amount>balance) {
 			return false;
 		} 
-		if (!this.password.equals(password))
+		//if (!this.password.equals(password))
+		if(!authenticate(password))
 			return false;
 		else {
 			
-			balance-=amount;
+			
 			return true;
 		}
 	}
+	
 	
 	public void creditInterest(double interestRate) {
 		balance+=(balance*interestRate/1200);
@@ -135,3 +138,9 @@ public class BankAccount {
 
 
 }
+
+
+
+
+
+

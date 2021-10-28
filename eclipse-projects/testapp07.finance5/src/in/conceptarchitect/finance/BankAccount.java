@@ -100,11 +100,11 @@ public class BankAccount {
 
 	public boolean deposit(double amount) {
 		// TODO Auto-generated method stub
-		if(amount>0) {
+		if(amount>=0) {
 			balance+=amount;
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -113,16 +113,23 @@ public class BankAccount {
 		if(amount <=0) {
 			return false;
 		}
+		
 		if (amount>balance) {
 			return false;
 		} 
-		if (!this.password.equals(password))
+		
+		//if (!this.password.equals(password)) //testing unsalted password
+		if(!authenticate(password))
 			return false;
 		else {
 			
 			balance-=amount;
 			return true;
 		}
+		
+		
+		
+		
 	}
 	
 	public void creditInterest() {

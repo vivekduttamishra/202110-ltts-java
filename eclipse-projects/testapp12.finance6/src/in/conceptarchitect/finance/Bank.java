@@ -3,9 +3,11 @@ package in.conceptarchitect.finance;
 public class Bank {
 	
 	String name; //name of the bank
-	double interestRate;
 	int lastId=0;
-		
+	
+	double interestRate;
+	
+	
 	public void creditInterst() {
 		//credit interest to all accounts
 		for(int i=1;i<=lastId;i++) {
@@ -13,6 +15,17 @@ public class Bank {
 			accounts[i].creditInterest(interestRate);
 		}
 	}
+	
+	public  double getInterestRate() {
+		return interestRate;
+	}
+
+	public  void setInterestRate(double interestRate) {
+		
+		BankAccount.interestRate = interestRate;
+	}
+	
+	
 	
 	public Bank(String name, double interestRate) {
 		super();
