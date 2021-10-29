@@ -45,8 +45,14 @@ public class Bank {
 	
 	
 	public int openAccount(String name, String password, double amount) {
+		
+		BankAccount account= new BankAccount(0, name, password,amount);
+		return addAccount(account);
+	}
+
+	private int addAccount(BankAccount account) {
 		int accountNumber= ++ lastId;
-		BankAccount account= new BankAccount(accountNumber, name, password,amount);
+		account.accountNumber=accountNumber;
 		accounts[accountNumber] = account; //store this account in the array.
 		accountCount++;
 		return accountNumber;
