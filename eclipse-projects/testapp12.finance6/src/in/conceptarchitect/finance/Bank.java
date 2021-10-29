@@ -8,6 +8,15 @@ public class Bank {
 	double interestRate;
 	
 	
+
+	BankAccount [] accounts= new BankAccount[100]; //MAX 100. May not be great for large banks
+	
+	
+	public int getAccountCount() {
+		// TODO Auto-generated method stub
+		return lastId;
+	}
+	
 	public void creditInterst() {
 		//credit interest to all accounts
 		for(int i=1;i<=lastId;i++) {
@@ -33,7 +42,6 @@ public class Bank {
 		this.interestRate = interestRate;
 	}
 	
-	BankAccount [] accounts= new BankAccount[100]; //MAX 100. May not be great for large banks
 	
 	public int openAccount(String name, String password, double amount) {
 		int accountNumber= ++ lastId;
@@ -53,9 +61,20 @@ public class Bank {
 	public boolean deposit(int accountNumber, double amount) {
 		
 		BankAccount account = getAccountByNumber(accountNumber);
-		
+		if(account==null)
+			return false;
 		return account.deposit(amount);
 	}
+
+	public double getAccountBalance(int accountNumber) {
+		// TODO Auto-generated method stub
+		BankAccount account=getAccountByNumber(accountNumber);
+		if(account==null)
+			return Double.NaN;
+		return account.getBalance();
+	}
+
+	
 
 	
 	

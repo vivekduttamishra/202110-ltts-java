@@ -108,9 +108,9 @@ public class BankAccount {
 		// TODO Auto-generated method stub
 		if(amount>0) {
 			balance+=amount;
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
