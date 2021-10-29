@@ -4,6 +4,7 @@ public class Bank {
 	
 	String name; //name of the bank
 	int lastId=0;
+	int accountCount=0;
 	
 	double interestRate;
 	
@@ -14,7 +15,7 @@ public class Bank {
 	
 	public int getAccountCount() {
 		// TODO Auto-generated method stub
-		return lastId;
+		return accountCount;
 	}
 	
 	public void creditInterst() {
@@ -47,10 +48,11 @@ public class Bank {
 		int accountNumber= ++ lastId;
 		BankAccount account= new BankAccount(accountNumber, name, password,amount);
 		accounts[accountNumber] = account; //store this account in the array.
+		accountCount++;
 		return accountNumber;
 	}
 	
-	private BankAccount getAccountByNumber(int accountNumber) {
+	BankAccount getAccountByNumber(int accountNumber) {
 		// TODO Auto-generated method stub
 		if(accountNumber>0 && accountNumber<=lastId)
 			return accounts[accountNumber];
@@ -74,8 +76,71 @@ public class Bank {
 		return account.getBalance();
 	}
 
+	public boolean transfer(int source, double amount, String password, int target) {
+		// TODO Auto-generated method stub
+		BankAccount s= getAccountByNumber(source);
+		BankAccount t= getAccountByNumber(target);
+		if(s==null)
+			return false;
+		
+		if(t==null)
+			return false;
+		
+		
+		if(s.withdraw(amount,password))
+			return t.deposit(amount);
+		else
+			return false;
+		
+	}
+
+	public boolean closeAccount(int accountNumber, String password) {
+		// TODO Auto-generated method stub
+		var account=getAccountByNumber(accountNumber);
+		if(account==null)
+			return false;
+		if(!account.authenticate(password))
+			return false;
+		if(account.getBalance()<0)
+			return false;
+		//I have to remove the account from being an active account
+		// let us set null value on the index where account existed.
+		
+		accounts[accountNumber]=null; //account is actually closed.
+		
+		accountCount--;
+		return true;
+	}
+
+	public boolean withdraw(int accountNumber, int amount, String password) {
+		// TODO Auto-generated method stub
+		var account=getAccountByNumber(accountNumber);
+		if(account==null)
+			return false;
+		return account.withdraw(amount, password);
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

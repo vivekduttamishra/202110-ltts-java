@@ -126,7 +126,7 @@ public class BankAccount {
 			return false;
 		else {
 			
-			
+			balance-=amount;
 			return true;
 		}
 	}

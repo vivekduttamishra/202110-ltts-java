@@ -10,6 +10,8 @@ import org.junit.Test;
 import in.conceptarchitect.finance.BankAccount;
 
 public class BankAccountTests {
+	
+	
 
 	String password="password";
 	double amount=20000;
