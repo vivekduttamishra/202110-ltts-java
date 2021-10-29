@@ -129,7 +129,7 @@ public class ATM {
 		if(bank.withdraw(accountNumber, amount, password))
 			dispenseCash(amount);
 		else
-			printMessage("Transfer Failed");
+			printMessage("Withdraw Failed");
 		
 	}
 

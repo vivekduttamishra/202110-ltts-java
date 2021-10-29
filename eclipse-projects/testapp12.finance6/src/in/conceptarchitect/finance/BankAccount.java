@@ -63,10 +63,7 @@ public class BankAccount {
 //		return password;
 //	}
 	
-	public boolean authenticate(String password) {
-		return this.password.equals(salt(password));
-	}
-
+	
 	void setPassword(String password) {
 		
 		this.password = salt(password);
@@ -113,6 +110,15 @@ public class BankAccount {
 			return false;
 		}
 	}
+	
+	
+	public boolean authenticate(String password) {
+		if( this.password.equals(salt(password)))
+			return true;
+		else
+			return false;
+	}
+
 
 	public boolean withdraw(double amount, String password) {
 		// TODO Auto-generated method stub

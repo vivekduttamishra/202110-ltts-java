@@ -117,7 +117,10 @@ public class Bank {
 		var account=getAccountByNumber(accountNumber);
 		if(account==null)
 			return false;
-		return account.withdraw(amount, password);
+		if(account.withdraw(amount, password))
+			return true;
+		else
+			return false;
 	}
 
 	public String getName() {
