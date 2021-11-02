@@ -9,19 +9,11 @@ import in.conceptarchitect.finance.exceptions.InvalidDenominationException;
 public class BankAccount {
 	
 	int accountNumber;
-	String name;
-	String password;
-	double balance;
-	static double interestRate = 10;
+	private String name;
+	private String password;
+	protected double balance;
 	
-	public static double getInterestRate() {
-		return interestRate;
-	}
-
-	public static void setInterestRate(double interestRate) {
-		
-		BankAccount.interestRate = interestRate;
-	}
+	
 	
 	
 	public BankAccount(int accountNumber, String name, String password, double amount) {
@@ -120,14 +112,19 @@ public class BankAccount {
 		//No error here
 	}
 
-	private void validateDenomination(double amount) {
+	protected void validateDenomination(double amount) {
 		if(amount<=0)
 			throw new InvalidDenominationException(accountNumber, "Amount Must be a Positive Value");
 	}
 	
+	
+	protected double getMaxWithdrawAmount(){ return balance ;}
+	
+	
 	private void ensureFunds(double amount) {
-		if (amount>balance) {
-			throw new InsufficientBalanceException(accountNumber, amount-balance);
+		double max=getMaxWithdrawAmount();
+		if (amount>max) {
+			throw new InsufficientBalanceException(accountNumber, amount-max);
 		}
 	}
 	
@@ -137,14 +134,10 @@ public class BankAccount {
 		validateDenomination(amount);
 		
 		ensureFunds(amount); 
-		
 
 		authenticate(password);
 			
-		
-			
-		balance-=amount;
-		
+		balance-=amount;		
 		
 	}
 

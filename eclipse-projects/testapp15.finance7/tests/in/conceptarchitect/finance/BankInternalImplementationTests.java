@@ -10,6 +10,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import in.conceptarchitect.finance.exceptions.InsufficientBalanceException;
+import in.conceptarchitect.finance.exceptions.InvalidAccountException;
+
 public class BankInternalImplementationTests {
 	Bank bank;
 	double interestRate=12;
@@ -18,7 +21,7 @@ public class BankInternalImplementationTests {
 	
 	//user defined assertions
 	public void assertBalanceEquals(int accountNumber, double balance) {
-		assertEquals(balance, bank.getAccountBalance(accountNumber),0.01);
+		assertEquals(balance, bank.getAccountBalance(accountNumber,correctPassword),0.01);
 	}
 	
 	public void assertBalanceUnchanged(int accountNumber) {
@@ -56,30 +59,25 @@ public class BankInternalImplementationTests {
 		
 	}
 	
-	@Test
+	@Test(expected=InvalidAccountException.class)
 	public void getAccountByNumber_returnsNullForInvalidAccountNumber() {
 		var account=bank.getAccountByNumber(-1);
-		assertNull(account);
+		
 	}
 	
-	@Test
+	@Test(expected=InvalidAccountException.class)
 	public void closeAccount_removesClosedAccount() {
 		
 		bank.closeAccount(a1, correctPassword);		
-		assertNull(bank.getAccountByNumber(a1));
+		bank.getAccountByNumber(a1);
 	}
 
-	@Test
+	@Test(expected=InsufficientBalanceException.class)
 	public void closeAccount_failsForAccountWithNegativeBalance() {
 		//Arrange
 		var account=bank.getAccountByNumber(a1);
 		account.balance=-1; //because I am in the same package I can do this logic
-		
-		var result= bank.closeAccount(a1, correctPassword);
-		
-		assertFalse(result);
-		assertNotNull(bank.getAccountByNumber(a1));
-		
+		bank.closeAccount(a1, correctPassword);
 		
 	}
 	

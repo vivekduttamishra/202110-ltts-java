@@ -35,7 +35,7 @@ public class Bank {
 
 	public  void setInterestRate(double interestRate) {
 		
-		BankAccount.interestRate = interestRate;
+		this.interestRate = interestRate;
 	}
 	
 	
@@ -64,7 +64,7 @@ public class Bank {
 	 BankAccount getAccountByNumber(int accountNumber) {
 		// TODO Auto-generated method stub
 		 
-		if(accountNumber<0 || accountNumber>=lastId || accounts[accountNumber]==null)
+		if(accountNumber<0 || accountNumber>lastId || accounts[accountNumber]==null)
 			 throw new InvalidAccountException(accountNumber);
 		
 		return accounts[accountNumber];

@@ -1,13 +1,15 @@
 package test.finance;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import in.conceptarchitect.finance.BankAccount;
+import in.conceptarchitect.finance.exceptions.InsufficientBalanceException;
+import in.conceptarchitect.finance.exceptions.InvalidCredentialsException;
+import in.conceptarchitect.finance.exceptions.InvalidDenominationException;
 
 public class BankAccountTests {
 	
@@ -24,34 +26,39 @@ public class BankAccountTests {
 		System.out.println("@Before called");
 	}
 
-	@Test
+	@Test(expected = InvalidDenominationException.class)
 	public void withdrawShouldFailForNegativeAmount() {
 	
-		boolean result=account.withdraw(-1, password);		
-		assertEquals(false, result);
+		account.withdraw(-1, password);		
+		
 	}
 	
 
-	@Test public void withdrawShouldFailForInvalidPassword() {
+	@Test(expected = InvalidCredentialsException.class)
+	public void withdrawShouldFailForInvalidPassword() {
 		
-		boolean result=account.withdraw(1, "wrong-password");
+		account.withdraw(1, "wrong-password");
 		
-		assertFalse(result);
+		
 	}
 	
 	
 	@Test public void withdrawShouldFailForExcessAmount() {
-		boolean result=account.withdraw(amount+1, password);
-		assertEquals(false,result);
+		try {
+			account.withdraw(amount+1, password);
+			fail("InsufficientBalanceException was expected but not thrown");
+			
+		}catch(InsufficientBalanceException ex) {
+			assertEquals(1, ex.getDeficit(),0);
+		}
+		
 	}
 	
 	@Test public void withdrawShouldPassForValidAmountAndPassword() {
 		String password="password";
 		double amount=20000;
 		BankAccount account=new BankAccount(1,"Vivek",password, amount);
-		boolean result=account.withdraw(amount, password);
-		
-		assertTrue(result);
+		account.withdraw(amount, password);
 		assertEquals(0, account.getBalance(),0.001);
 	}
 	
