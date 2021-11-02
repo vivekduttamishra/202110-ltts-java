@@ -1,3 +1,4 @@
+
 package testapp13.exceptions;
 
 public class NoLuckException extends LuckException {

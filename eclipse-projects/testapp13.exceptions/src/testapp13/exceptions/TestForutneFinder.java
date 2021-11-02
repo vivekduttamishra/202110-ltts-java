@@ -32,8 +32,6 @@ public class TestForutneFinder {
 		}
 		
 		
-		
-		
 	}
 	
 	@Test(expected = NoLuckException.class)
