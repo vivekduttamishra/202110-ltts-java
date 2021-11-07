@@ -1,5 +1,9 @@
 package in.conceptarchitect.finance.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 import in.conceptarchitect.finance.BankAccount;
 
 //@FunctionalInterface
@@ -25,6 +29,20 @@ public interface AccountStorage {
 		
 		accountProcessor.close();		
 	}
+	
+	default List<BankAccount> findAll(Predicate<BankAccount> condition){
+		
+		var result=new ArrayList<BankAccount> ();
+		
+		this.process(account->{
+			
+			if(condition.test(account))
+				result.add(account);
+		});
+		
+		return result;
+	}
+	
 	
 	public static AccountStorage getDefaultStorage() {
 		return new HashmapAccountStorage();
